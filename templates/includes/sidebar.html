@@ -1,0 +1,151 @@
+
+         <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+               <div id="sidebar-menu" class="sidebar-menu">
+                
+                 {% if user.user_type == '1' %}
+
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+
+                     <li>
+                        <a href="{% url 'adminhome' %}"><i class="fas fa-chalkboard-teacher"></i> <span> Dashboard</span> </a>                       
+                     </li>
+
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Credit Officer</span> <span class="menu-arrow"></span></a>
+                        <ul>                          
+                           <li><a href="{% url 'addcreditofficers' %}">Add CreditOfficers</a></li>                       
+                         
+                        </ul>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Supervisors</span> <span class="menu-arrow"></span></a>
+                        <ul>                           
+                           <li><a href="{% url 'addsupervisors' %}">Add Supervisors</a></li>                         
+                        </ul>
+                     </li>
+
+                     <li class="submenu">
+                        <a href="#"><i class="fa fa-users" aria-hidden="true"></i> <span> Customers</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                     
+                           <li><a href="{% url 'addcustomers' %}">Add Customers</a></li>
+                           <li><a href="">View Customers</a></li>
+                           <li><a href="{% url 'customerloan' %}">Customers Loan</a></li>
+                        </ul>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-donate"></i> <span> Office </span> <span class="menu-arrow"></span></a>
+                        <ul>                         
+                           <li><a href="{% url 'addoffice' %}">Add Office</a></li>                        
+                        </ul>
+                     </li>  
+                     
+                     <li>
+                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span> Logout </span> </a>                        
+                     </li>                
+                  
+                  </ul>
+
+
+                  
+                  {% elif user.user_type == '2' %}
+
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+
+                     <li>
+                        <a href="{% url 'supervisorhome' %}"><i class="fas fa-chalkboard-teacher"></i> <span> Dashboard</span> </a>                       
+                     </li>
+              
+                    
+                     <li>
+                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span> Logout </span> </a>                        
+                     </li>                
+                  
+                  </ul>
+
+
+                  {% elif user.user_type == '3' %}
+
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+
+                     <li>
+                        <a href="{% url 'credithome' %}"><i class="fas fa-chalkboard-teacher"></i> <span> Dashboard</span> </a>                       
+                     </li>
+
+                    
+                     <li class="submenu">
+                        <a href="#"><i class="fa fa-users" aria-hidden="true"></i> <span> Customers</span> <span class="menu-arrow"></span></a>
+                        <ul> 
+                           <li><a href="{% url 'creditcustomersloan' %}">Add CustomersLoanInfo</a></li>        
+                           
+                           <li><a href="">View CustomersLoanInfo </a></li>
+                        </ul>
+                     </li>
+                    
+                     <li>
+                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span> Logout </span> </a>                        
+                     </li>                
+                  
+                  </ul>
+
+
+
+                  {% elif user.user_type == '4' %}
+
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+
+                     <li>
+                        <a href="{% url 'customerhome' %}"><i class="fas fa-chalkboard-teacher"></i> <span> Dashboard</span> </a>                       
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fa fa-users" aria-hidden="true"></i> <span> Customers</span> <span class="menu-arrow"></span></a>
+                        <ul> 
+                           <li><a href="{% url 'customerapplyloan' %}">Apply For Leave</a></li>        
+                           
+                           <li><a href="">View CustomersLoanInfo </a></li>
+                        </ul>
+                     </li>               
+          
+                    
+                     <li>
+                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span> Logout </span> </a>                        
+                     </li>                
+                  
+                  </ul>
+
+
+
+                  {% else %}
+
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+
+                     <li>
+                        <a href="{% url 'officehome' %}"><i class="fas fa-chalkboard-teacher"></i> <span> Dashboard</span> </a>                       
+                     </li>  
+                     <li>
+                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span> Logout </span> </a>                        
+                     </li> 
+                  </ul>
+
+                  {% endif %}
+
+                  
+               </div>
+            </div>
+         </div>

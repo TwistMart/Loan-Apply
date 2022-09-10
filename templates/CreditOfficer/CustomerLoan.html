@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+       <div class="card">
+          <div class="card-body">
+             <form method="post" action="{% url 'creditcustomersloan' %}" enctype="multipart/form-data">
+                 {% csrf_token %}
+          
+                   <div class="col-12">
+                      <h5 class="form-title"><span>Loan Bio</span></h5>
+                   </div>
+
+                   {% include 'includes/messages.html' %}
+
+                   <div class="col-sm-11">
+                      <div class="form-group">
+                         <label>Principal</label>
+                         <input type="number" class="form-control" placeholder="Not less than 7000" name="principal">
+                      </div>
+                   </div>
+                   <div class="col-sm-11">
+                      <div class="form-group">
+                         <label>Interest Rate</label>
+                         <input type="number" class="form-control" defaultValue="3%" placeholder="3%" name="interest">
+                      </div>
+                   </div>                   
+                 <div class="col-sm-11">
+                    <div class="form-group">
+                       <label>Months</label>
+                       <input type="value" class="form-control" defaultValue="2" placeholder="2 months" name="months">
+                    </div>
+                 </div>             
+             
+                <br>
+
+                   <div class="col-12">
+                      <button type="submit" class="btn btn-primary">Add Loan info</button>
+                   </div>
+                
+             </form>
+          </div>
+       </div>
+    </div>
+ </div>
+
+{% endblock content %}
