@@ -42,18 +42,19 @@ def results_interest(request):
             time_periods= time_periods, 
                          
         )  
+                
+        
+        customerloan.save()
         is_valid = interest_parameter_checker(amount, interest_rate, num_times_interest, time_period, time_periods)
         if is_valid:                    
-            compound_interest=compound_interest(amount, interest_rate, num_times_interest, time_period, time_periods)
+            compound_interest_=compound_interest(amount, interest_rate, num_times_interest, time_period, time_periods)
         else:
-            compound_interest=None 
-             
-        print(compound_interest)
-        customerloan.save()
-        messages.success(request, "Loan applied successfully")
-        return redirect('creditviewcustomers')  
+            compound_interest_=None 
 
-   
+        print(compound_interest_)
+        
+        messages.success(request, "Loan applied successfully")
+        return redirect('creditviewcustomers')    
 
     return render(request, 'CreditOfficer/ViewCustomers.html')
 
