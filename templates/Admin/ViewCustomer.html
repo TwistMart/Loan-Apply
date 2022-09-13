@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Customers</h3>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Customers</li>
+             </ul>
+          </div>
+          <div class="col-auto text-right float-right ml-auto">
+             <a href="{% url 'create_pdf' %}" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+            
+          </div>
+       </div>
+    </div>
+
+    {% include 'includes/messages.html' %}
+    
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card card-table">
+             <div class="card-body">
+                <div class="table-responsive">
+                   <table id="table_id" class="table table-hover table-center mb-0">
+                      <thead>
+                         <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th> 
+                            <th>Username</th>                       
+                            <th>Gender</th>
+                            <th>Address</th>                           
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            
+                            <th class="text-right">Action</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+
+                        {% for i in customer %} <!--for i in student== student in this case it is the one used in HOD_views  n the context i.e  context ={
+                           "students": student
+                       } -->
+
+                         <tr>
+                            <td>{{i.id}}</td>
+                            <td>                               
+                                {{i.admin.first_name}} &nbsp; {{i.admin.last_name}}                          
+                            </td>
+                            <td>{{i.admin.email}}</td>                           
+                            <td>{{i.gender}}</td>                         
+                            <td>{{i.address}}</td>
+                            <td>{{i.username}}</td>
+                            <td>{{i.created_at}}</td>
+                            <td>{{i.updated_at}}</td>                         
+                         
+                         </tr>
+
+                         {% endfor %}
+     
+                      </tbody>
+                   </table>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+{% endblock content %}

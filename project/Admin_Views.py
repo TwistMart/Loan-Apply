@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages # using messages
 from app.models import CustomUser,CreditOfficer,Customer,Supervisors,Office,CustomerApply_Loan,Loan
 #from project.scripts.compound_interest import compound_interest
+from xhtml2pdf import pisa
+from django.http import HttpResponse
+from django.template.loader import get_template
 
 
 @login_required(login_url='/')
@@ -98,6 +101,41 @@ def AddCustomer(request):
             return redirect('addcustomers') 
 
     return render(request, "Admin/AddCustomer.html")
+
+def ViewCustomer(request):
+    customer=Customer.objects.all
+
+    context={
+        'customer':customer,
+    }
+    return render(request, 'Admin/ViewCustomer.html', context)
+    
+
+def CustomerPdfReport(request):
+    customers= Customer.objects.all()
+    
+
+    template_path = 'Admin/pdfview.html'
+  
+    context =  { 
+   'customers': customers
+   }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="customerlist.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
 
 
 def AddSupervisor(request):

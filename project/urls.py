@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views,CreditOfficer_Views,Office_Views,Supervisor_Views,Admin_Views,Customer_Views
@@ -9,6 +9,8 @@ from . import views,CreditOfficer_Views,Office_Views,Supervisor_Views,Admin_View
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('base', views.Base, name='base' ),
+    path('pdf/', include('app.urls')),
+
 
     # login paths
     path('', views.Login, name='login'),
@@ -20,11 +22,13 @@ urlpatterns = [
     path('Admin/Supervisor/Add', Admin_Views.AddSupervisor, name='addsupervisors'), 
     path('Admin/Credit/Add', Admin_Views.AddCreditOfficer, name='addcreditofficers'), 
     path('Admin/Customers/Add', Admin_Views.AddCustomer, name='addcustomers'), 
+    path('Admin/Customers/View', Admin_Views.ViewCustomer, name='viewcustomers'),
+
     path('Admin/Office/Add', Admin_Views.AddOffice, name='addoffice'), 
     path('Admin/Customer/Loan', Admin_Views.CustomerLoan, name='customerloan'), 
     path('Admin/Customer/Approve/Loan/<str:pk>', Admin_Views.CustomerApproveLoan, name='customerapproveloan'),
     path('Admin/Customer/Disapprove/Loan/<str:pk>', Admin_Views.CustomerDisapproveLoan, name='customerdisapproveloan'), 
-
+    path('create_pdf', Admin_Views.CustomerPdfReport, name="create_pdf"),
 
     # CreditOfficer paths 
     path('Credit/Home', CreditOfficer_Views.CreditOfficerHome, name='credithome'), 

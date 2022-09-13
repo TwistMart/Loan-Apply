@@ -20,7 +20,7 @@ def interest_calc(request):
 def results_interest(request): 
        
 
-    if request.method=='POST':        
+    if request.method=='POST':     
 
         amount=request.POST.get('amount')
         interest_rate=request.POST.get('interest_rate')
@@ -32,6 +32,12 @@ def results_interest(request):
        
         creditor=CreditOfficer.objects.get(admin=request.user.id)
         print(creditor)
+
+        is_valid = interest_parameter_checker(amount, interest_rate, num_times_interest, time_period, time_periods)
+        if is_valid:                    
+            compound_interest_=compound_interest(amount, interest_rate, num_times_interest, time_period, time_periods)
+        else:
+            compound_interest_=None 
       
         customerloan=Loan(
             creditofficer=creditor,     
@@ -40,18 +46,16 @@ def results_interest(request):
             num_times_interest= num_times_interest,
             time_period= time_period,
             time_periods= time_periods, 
+            is_valid=is_valid,
+            compound_interest_=compound_interest_,
                          
-        )  
-                
+        )                 
         
         customerloan.save()
-        is_valid = interest_parameter_checker(amount, interest_rate, num_times_interest, time_period, time_periods)
-        if is_valid:                    
-            compound_interest_=compound_interest(amount, interest_rate, num_times_interest, time_period, time_periods)
-        else:
-            compound_interest_=None 
+      
 
-        print(compound_interest_)
+        print(compound_interest_, is_valid, amount, interest_rate,time_period, time_periods)
+      
         
         messages.success(request, "Loan applied successfully")
         return redirect('creditviewcustomers')    
