@@ -28,8 +28,9 @@ urlpatterns = [
 
     # CreditOfficer paths 
     path('Credit/Home', CreditOfficer_Views.CreditOfficerHome, name='credithome'), 
-    path('Credit/Customers', CreditOfficer_Views.CreditOfficerViewCustomers, name='creditviewcustomers'), 
-    path('Credit/Loan/Info', CreditOfficer_Views.CreditOfficerLoanCustomersInfo, name='creditcustomersloan'), 
+    path('interest_calculator/', CreditOfficer_Views.interest_calc, name = 'creditcustomersloan'),    
+    path('interest_calculator/results/', CreditOfficer_Views.results_interest, name = 'creditviewcustomers'), 
+
 
 
     # Customer paths

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Customer Loan</h3>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Customer Loan</li>
+             </ul>
+          </div>
+          <div class="col-auto text-right float-right ml-auto">
+             <a href="" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+             <a href="" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+          </div>
+       </div>
+    </div>
+
+    {% include 'includes/messages.html' %}
+    
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card card-table">
+             <div class="card-body">
+                <div class="table-responsive">
+                   <table id="table_id" class="table table-hover table-center mb-0">
+                      <thead>
+                         <tr> 
+                            <th>Creditor Name</th>                         
+                            <th>Amount</th>
+                            <th>Interest Rate</th>
+                            <th>No of times</th>
+                            <th>Time Period</th>   
+                            <th>Compound Interest</th>   
+                           
+                            
+                            <th class="text-right">Action</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+
+                        {% for i in applyloan %}            
+
+                     
+                         <tr>
+                            <td>{{i.creditofficer.admin.first_name}}</td>
+                            <td>{{i.customer_id.admin.first_name}}</td>                           
+                            <td>{{i.amount}}</td>                         
+                            <td>{{ i.interest_rate }}</td>                         
+                            <td>{{ i.num_times_interest }}</td>
+                            <td>{{ i.time_period }} {{ i.time_periods}}</td>
+                            <td>{{ i.compound_interest }}</td>
+                            <td class="text-right">
+                                <div class="actions"> 
+                                   
+                                    <a href="" class="btn btn-success"> Approve</a>
+                                    <a href="" class="btn btn-danger"> Disapprove</a>
+ 
+                                                              
+                                    <button class="btn btn-success" disabled="disabled"> Approve</button>
+ 
+                                    <button class="btn btn-danger" disabled="disabled"> Disapprove</button>
+                                   
+                                  
+                                </div>
+                             </td>                      
+                        
+                         </tr>
+
+
+                         {% endfor %}
+                     
+     
+                      </tbody>
+                   </table>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+{% endblock content %}

@@ -21,7 +21,8 @@ def CustomerApplyLoan(request):
     return render(request, "Customer/ApplyLoan.html", context)
 
 def CustomerApplyLoanSave(request):
-    if request.method=='POST':
+    
+    if request.method=='POST':        
 
         apply_date=request.POST.get('apply_date')
         apply_message=request.POST.get('apply_message')

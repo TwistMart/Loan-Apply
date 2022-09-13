@@ -1,16 +1,21 @@
+from itertools import count
 from multiprocessing import context
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages # using messages
-from app.models import CustomUser,CreditOfficer,Customer,Supervisors,Office,CustomerApply_Loan
+from app.models import CustomUser,CreditOfficer,Customer,Supervisors,Office,CustomerApply_Loan,Loan
+#from project.scripts.compound_interest import compound_interest
 
 
 @login_required(login_url='/')
 def AdminHome(request):
+    loan_count=Loan.objects.all().count()
     customer_count= Customer.objects.all().count()
-
+   # payableamount=Loan.objects.filter(id='amount').count()
+    
     context={
-        'customer_count':customer_count
+        'loan_count':loan_count,
+        'customer_count':customer_count,        
     }
     return render(request, "Admin/AdminHome.html",context)
 
